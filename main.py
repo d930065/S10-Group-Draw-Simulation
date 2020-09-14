@@ -13,11 +13,11 @@ MCX, PSG = team("MCX","PCS"), team("PSG","PCS")
 
 def search_pool2(pool, a, error):
     if error == 1:
-        temp[last[a]-1]=0       
-    for i in range(last[a] if error == 1 else 0,4):
+        temp[last[a]]=0       
+    for i in range(last[a]+1 if error == 1 else 0,4):
         if temp[i] == 0 and groups[i][0].region != pool[a].region:
             temp[i] = pool[a]
-            last[a] = i+1
+            last[a] = i
             if a < 3:
                 search_pool2(pool, a+1, 0)
             return
@@ -25,11 +25,11 @@ def search_pool2(pool, a, error):
     
 def search_pool3(pool, a, error):
     if error == 1:
-        temp[last[a]-1]=0       
-    for i in range(last[a] if error == 1 else 0,4):
+        temp[last[a]]=0       
+    for i in range(last[a]+1 if error == 1 else 0,4):
         if temp[i] == 0 and groups[i][0].region != pool[a].region and groups[i][1].region != pool[a].region:
             temp[i] = pool[a]
-            last[a] = i+1
+            last[a] = i
             if a < 3:
                 search_pool3(pool, a+1, 0)
             return
@@ -37,11 +37,11 @@ def search_pool3(pool, a, error):
     
 def search_pool4(pool, a, error):
     if error == 1:
-        temp[last[a]-1]=0       
-    for i in range(last[a] if error == 1 else 0,4):
+        temp[last[a]]=0       
+    for i in range(last[a]+1 if error == 1 else 0,4):
         if temp[i] == 0 and groups[i][0].region != pool[a].region and groups[i][1].region != pool[a].region and groups[i][2].region != pool[a].region:
             temp[i] = pool[a]
-            last[a] = i+1
+            last[a] = i
             if a < 3:
                 search_pool4(pool, a+1, 0)
             return
