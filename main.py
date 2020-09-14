@@ -11,41 +11,41 @@ DWG, DRX, GEN = team("DWG","KR"), team("DRX","KR"), team("GEN","KR")
 TSM, FLY, TL = team("TSM","NA"), team("FLY","NA"), team("TL ","NA")
 MCX, PSG = team("MCX","PCS"), team("PSG","PCS")
 
-def search_pool2(pool, a, error):
+def search_pool2(a, error):
     if error == 1:
         temp[last[a]]=0       
     for i in range(last[a]+1 if error == 1 else 0,4):
-        if temp[i] == 0 and groups[i][0].region != pool[a].region:
-            temp[i] = pool[a]
+        if temp[i] == 0 and groups[i][0].region != pool_2[a].region:
+            temp[i] = pool_2[a]
             last[a] = i
             if a < 3:
-                search_pool2(pool, a+1, 0)
+                search_pool2(a+1, 0)
             return
-    search_pool2(pool, a-1, 1)
+    search_pool2(a-1, 1)
     
-def search_pool3(pool, a, error):
+def search_pool3(a, error):
     if error == 1:
         temp[last[a]]=0       
     for i in range(last[a]+1 if error == 1 else 0,4):
-        if temp[i] == 0 and groups[i][0].region != pool[a].region and groups[i][1].region != pool[a].region:
-            temp[i] = pool[a]
+        if temp[i] == 0 and groups[i][0].region != pool_3[a].region and groups[i][1].region != pool_3[a].region:
+            temp[i] = pool_3[a]
             last[a] = i
             if a < 3:
-                search_pool3(pool, a+1, 0)
+                search_pool3(a+1, 0)
             return
-    search_pool3(pool, a-1, 1)   
+    search_pool3(a-1, 1)   
     
-def search_pool4(pool, a, error):
+def search_pool4(a, error):
     if error == 1:
         temp[last[a]]=0       
     for i in range(last[a]+1 if error == 1 else 0,4):
-        if temp[i] == 0 and groups[i][0].region != pool[a].region and groups[i][1].region != pool[a].region and groups[i][2].region != pool[a].region:
-            temp[i] = pool[a]
+        if temp[i] == 0 and groups[i][0].region != pool_4[a].region and groups[i][1].region != pool_4[a].region and groups[i][2].region != pool_4[a].region:
+            temp[i] = pool_4[a]
             last[a] = i
             if a < 3:
-                search_pool4(pool, a+1, 0)
+                search_pool4(a+1, 0)
             return
-    search_pool4(pool, a-1, 1)
+    search_pool4(a-1, 1)
     
 count = 0
 
@@ -73,7 +73,7 @@ for i in pool_1_iter:
                 
                 temp = [0]*4
                 last = [0]*4
-                search_pool2(pool_2,0,0)
+                search_pool2(0,0)
                 for _ in groups:
                     _.append(temp.pop(0))
                     
@@ -87,13 +87,13 @@ for i in pool_1_iter:
                         temp[_] = RGE
                         last[0] = _
                         start = 1
-                search_pool3(pool_3,start,0)
+                search_pool3(start,0)
                 for _ in groups:
                     _.append(temp.pop(0))
                 
                 temp = [0]*4
                 last = [0]*4
-                search_pool4(pool_4,0,0)
+                search_pool4(0,0)
                 for _ in groups:
                     _.append(temp.pop(0))
                     
